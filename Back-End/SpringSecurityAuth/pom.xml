@@ -65,6 +65,12 @@
 			<artifactId>spring-security-oauth2-jose</artifactId>
 		</dependency>
 
+		<!-- Spring Security OAuth2 Resource Server -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-resource-server</artifactId>
+		</dependency>
+
 		<!-- Lombok for code generation -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>

@@ -1,10 +1,10 @@
-package com.chatop.controller;
+package com.chatop.api.controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chatop.services.JWTService;
+import com.chatop.api.services.JWTService;
 
 
 @RestController

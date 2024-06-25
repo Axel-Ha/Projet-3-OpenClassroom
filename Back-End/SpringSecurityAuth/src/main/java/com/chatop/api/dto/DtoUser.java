@@ -57,18 +57,4 @@ public class DtoUser {
     public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
     }
-
-//    public DtoUser userEntityToUserDto(DBUser user) {
-//        if (user == null) {
-//            return null;
-//        } else {
-//            DtoUser dtoUser = new DtoUser();
-//            dtoUser.setId(user.getId());
-//            dtoUser.setEmail(user.getEmail());
-//            dtoUser.setName(user.getName());
-//            dtoUser.setCreated_at(user.getCreated_at());
-//            dtoUser.setUpdated_at(user.getUpdated_at());
-//            return dtoUser;
-//        }
-//    }
 }

@@ -5,7 +5,7 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.chatop.api.dto.DtoUser;
+import com.chatop.api.domain.dto.User;
 import com.chatop.api.repository.UserRepository;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,17 +15,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository  userRepository;
+    private final UserRepository  userRepository;
+    private final UserMapper userMapper;
 
-    @Autowired
-    private UserMapper userMapper;
-
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository, UserMapper userMapper){
         this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
-    public DtoUser getUserById(@PathVariable final Long id){
+    public User getUserById(@PathVariable final Long id){
         System.out.println("UserService getUserById 3");
         return userRepository.findById(id).map(userMapper::userEntityToUserDto).orElseThrow();
     }

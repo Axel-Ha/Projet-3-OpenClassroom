@@ -1,19 +1,29 @@
 package com.chatop.api.services;
 
-import com.chatop.api.mapper.UserMapper;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.chatop.api.domain.dto.User;
 import com.chatop.api.repository.UserRepository;
+import com.chatop.api.domain.dto.UserDto;
+import com.chatop.api.domain.entity.UserEntity;
+import com.chatop.api.mapper.UserMapper;
 
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Collections;
 
+
+@Slf4j
 @Data
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository  userRepository;
     private final UserMapper userMapper;
@@ -23,8 +33,17 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
-    public User getUserById(@PathVariable final Long id){
+    public UserDto getUserById(@PathVariable final Long id){
         System.out.println("UserService getUserById 3");
         return userRepository.findById(id).map(userMapper::userEntityToUserDto).orElseThrow();
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        log.info("UserService : loadUserByUsername ");
+        UserEntity userEntity = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User Not found"));
+        GrantedAuthority authority = new SimpleGrantedAuthority(userEntity.getRole());
+        return new User(userEntity.getEmail(), userEntity.getPassword(), Collections.singletonList(authority));
+
     }
 }

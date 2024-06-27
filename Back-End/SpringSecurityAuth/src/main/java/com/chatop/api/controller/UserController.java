@@ -1,5 +1,5 @@
 package com.chatop.api.controller;
-import com.chatop.api.domain.dto.User;
+import com.chatop.api.domain.dto.UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<User> getUser(@PathVariable final Long id){
+    public ResponseEntity<UserDto> getUser(@PathVariable final Long id){
         log.info("Controller getUser() 2");
         return ResponseEntity.ok(userService.getUserById(id));
     }

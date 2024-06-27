@@ -1,26 +1,26 @@
 package com.chatop.api.mapper;
 
-import com.chatop.api.domain.dto.User;
+import com.chatop.api.domain.dto.UserDto;
 import com.chatop.api.domain.entity.UserEntity;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
-        public User userEntityToUserDto(UserEntity user) {
+        public UserDto userEntityToUserDto(UserEntity user) {
         if (user == null) {
             return null;
         } else {
-            User dtoUser = new User();
-            dtoUser.setId(user.getId());
-            dtoUser.setEmail(user.getEmail());
-            dtoUser.setName(user.getName());
-            dtoUser.setCreated_at(user.getCreatedAt());
-            dtoUser.setUpdated_at(user.getUpdatedAt());
-            return dtoUser;
+            UserDto dtoUserDto = new UserDto();
+            dtoUserDto.setId(user.getId());
+            dtoUserDto.setEmail(user.getEmail());
+            dtoUserDto.setName(user.getName());
+            dtoUserDto.setCreated_at(user.getCreatedAt());
+            dtoUserDto.setUpdated_at(user.getUpdatedAt());
+            return dtoUserDto;
         }
     }
 
-    public static UserEntity toEntity(User dto) {
+    public static UserEntity toEntity(UserDto dto) {
         UserEntity user = new UserEntity();
         user.setId(dto.getId());
         user.setName(dto.getName());

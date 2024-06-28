@@ -1,5 +1,5 @@
 {
-  "uuid": "7bd3e9f8-63b1-4862-98a8-f4f4cf4806a0",
+  "uuid": "7a2de203-1b6d-4c7b-a58e-7b674490f206",
   "lastMigration": 32,
   "name": "Rental oc",
   "endpointPrefix": "api",
@@ -8,13 +8,13 @@
   "hostname": "",
   "routes": [
     {
-      "uuid": "822a0106-1c27-4f6b-92d0-89da3da205cf",
+      "uuid": "e94abfd8-9f9b-4d12-aecd-eecd174ee0e4",
       "documentation": "",
       "method": "all",
       "endpoint": "auth/register",
       "responses": [
         {
-          "uuid": "28fc815b-1c32-431f-8c4b-cdf017a9ce04",
+          "uuid": "1db53e78-c811-4b85-8c77-7bdf30efe0fd",
           "body": "{}",
           "latency": 0,
           "statusCode": 400,
@@ -55,7 +55,7 @@
           "callbacks": []
         },
         {
-          "uuid": "5581d247-579a-40ac-a82a-89cddbc9ef5d",
+          "uuid": "05abe869-3a23-433f-b3a7-947411220113",
           "body": "{\n  \"token\": \"jwt\"\n}",
           "latency": 0,
           "statusCode": 200,
@@ -78,13 +78,13 @@
       "type": "http"
     },
     {
-      "uuid": "f5164abe-efa9-44f1-8dee-54ba19bfdd4d",
+      "uuid": "bcf967cf-6529-4e1b-84aa-91e6de3ec910",
       "documentation": "",
       "method": "post",
       "endpoint": "auth/login",
       "responses": [
         {
-          "uuid": "c6fb6692-c05f-4aac-8af0-69e8647d368b",
+          "uuid": "9278b374-5c6d-4979-8670-668aa14f0787",
           "body": "{\n  \"token\": \"jwt\"\n}",
           "latency": 0,
           "statusCode": 200,
@@ -118,7 +118,7 @@
           "callbacks": []
         },
         {
-          "uuid": "1fffa3cd-b1cc-472c-9759-25e1b0693d2f",
+          "uuid": "62b6b3c2-54c1-4785-920f-ef7c2d642c24",
           "body": "{\n  \"message\": \"error\"\n}",
           "latency": 0,
           "statusCode": 401,
@@ -156,13 +156,13 @@
       "type": "http"
     },
     {
-      "uuid": "7eca689a-296c-44d0-ad11-ab666af036d8",
+      "uuid": "b64d1adf-b2fd-4b82-8b39-8ac8bc3c7958",
       "documentation": "",
       "method": "post",
       "endpoint": "messages",
       "responses": [
         {
-          "uuid": "57ee1095-96b7-4635-992c-d3866f0c19dd",
+          "uuid": "0e003039-f5a9-4e54-9609-ac6e5322091d",
           "body": "{\n  \"message\": \"Message send with success\"\n}",
           "latency": 0,
           "statusCode": 200,
@@ -181,7 +181,7 @@
           "callbacks": []
         },
         {
-          "uuid": "5b6feffb-838b-4d88-8beb-fe4f9b22a4c8",
+          "uuid": "97ac2e7a-e0db-42e9-bbe2-2eabf64b17a0",
           "body": "",
           "latency": 0,
           "statusCode": 401,
@@ -208,7 +208,7 @@
           "callbacks": []
         },
         {
-          "uuid": "b6b06e48-2471-4919-b589-e5a223f68c3a",
+          "uuid": "dfb09247-585a-47c8-ba48-8aadfe0a72f8",
           "body": "{}",
           "latency": 0,
           "statusCode": 400,
@@ -253,13 +253,13 @@
       "type": "http"
     },
     {
-      "uuid": "9fddcd86-c150-46f2-8dd0-4bca98c410ec",
+      "uuid": "e21efa22-35b9-4b0a-9da0-17f542b25ad0",
       "documentation": "",
       "method": "get",
       "endpoint": "auth/me",
       "responses": [
         {
-          "uuid": "5a37f124-6126-4ccd-92c0-04d94cdb636b",
+          "uuid": "000c12fb-2a0d-47c7-b639-8e04de8e98e0",
           "body": "{}",
           "latency": 0,
           "statusCode": 401,
@@ -286,7 +286,7 @@
           "callbacks": []
         },
         {
-          "uuid": "bc3569c4-1386-4cdf-b142-158c847480ba",
+          "uuid": "66982d4e-c86d-4746-9d5a-b082921d0b3c",
           "body": "{\n  \"id\": 1,\n\t\"name\": \"Test TEST\",\n\t\"email\": \"test@test.com\",\n\t\"created_at\": \"2022/02/02\",\n\t\"updated_at\": \"2022/08/02\"  \n}",
           "latency": 0,
           "statusCode": 200,
@@ -317,13 +317,13 @@
       "type": "http"
     },
     {
-      "uuid": "cd933fa8-d658-4bab-a26f-ad684dbcc21e",
+      "uuid": "e56bfe8e-d837-4e44-bf01-cb3aac0bfb50",
       "documentation": "",
       "method": "get",
       "endpoint": "rentals",
       "responses": [
         {
-          "uuid": "0165ba2e-b8f8-4c40-803b-2c0f56e7fbb4",
+          "uuid": "cc549134-0309-4718-99ed-e245d885cec5",
           "body": "{ \n  \"rentals\": [\n  {\n\t\"id\": 1,\n\t\"name\": \"test house 1\",\n\t\"surface\": 432,\n\t\"price\": 300,\n\t\"picture\": \"https://blog.technavio.org/wp-content/uploads/2018/12/Online-House-Rental-Sites.jpg\",\n\t\"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a lectus eleifend, varius massa ac, mollis tortor. Quisque ipsum nulla, faucibus ac metus a, eleifend efficitur augue. Integer vel pulvinar ipsum. Praesent mollis neque sed sagittis ultricies. Suspendisse congue ligula at justo molestie, eget cursus nulla tincidunt. Pellentesque elementum rhoncus arcu, viverra gravida turpis mattis in. Maecenas tempor elementum lorem vel ultricies. Nam tempus laoreet eros, et viverra libero tincidunt a. Nunc vel nisi vulputate, sodales massa eu, varius erat.\",\n\t\"owner_id\": 1,\n\t\"created_at\": \"2012/12/02\",\n\t\"updated_at\": \"2014/12/02\"  \n},\n{\n\t\"id\": 1,\n\t\"name\": \"test house 2\",\n\t\"surface\": 154,\n\t\"price\": 200,\n\t\"picture\": \"https://blog.technavio.org/wp-content/uploads/2018/12/Online-House-Rental-Sites.jpg\",\n\t\"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a lectus eleifend, varius massa ac, mollis tortor. Quisque ipsum nulla, faucibus ac metus a, eleifend efficitur augue. Integer vel pulvinar ipsum. Praesent mollis neque sed sagittis ultricies. Suspendisse congue ligula at justo molestie, eget cursus nulla tincidunt. Pellentesque elementum rhoncus arcu, viverra gravida turpis mattis in. Maecenas tempor elementum lorem vel ultricies. Nam tempus laoreet eros, et viverra libero tincidunt a. Nunc vel nisi vulputate, sodales massa eu, varius erat.\",\n\t\"owner_id\": 2,\n\t\"created_at\": \"2012/12/02\",\n\t\"updated_at\": \"2014/12/02\"  \n},{\n\t\"id\": 3,\n\t\"name\": \"test house 3\",\n\t\"surface\": 234,\n\t\"price\": 100,\n\t\"picture\": \"https://blog.technavio.org/wp-content/uploads/2018/12/Online-House-Rental-Sites.jpg\",\n\t\"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a lectus eleifend, varius massa ac, mollis tortor. Quisque ipsum nulla, faucibus ac metus a, eleifend efficitur augue. Integer vel pulvinar ipsum. Praesent mollis neque sed sagittis ultricies. Suspendisse congue ligula at justo molestie, eget cursus nulla tincidunt. Pellentesque elementum rhoncus arcu, viverra gravida turpis mattis in. Maecenas tempor elementum lorem vel ultricies. Nam tempus laoreet eros, et viverra libero tincidunt a. Nunc vel nisi vulputate, sodales massa eu, varius erat.\",\n\t\"owner_id\": 1,\n\t\"created_at\": \"2012/12/02\",\n\t\"updated_at\": \"2014/12/02\"  \n}\n  \n  ]\n}",
           "latency": 0,
           "statusCode": 200,
@@ -342,7 +342,7 @@
           "callbacks": []
         },
         {
-          "uuid": "8d9308a0-f580-4d74-99f2-7d179d903357",
+          "uuid": "f92b64d2-5d3e-4cc0-9c42-d8c298422ad2",
           "body": "",
           "latency": 0,
           "statusCode": 401,
@@ -373,13 +373,13 @@
       "type": "http"
     },
     {
-      "uuid": "4f438ee4-023d-40b8-9ed4-f22f8f12736e",
+      "uuid": "30772291-74d3-4c63-8077-4eceb50ef2c0",
       "documentation": "",
       "method": "get",
       "endpoint": "rentals/:id",
       "responses": [
         {
-          "uuid": "57db14b9-4de2-4348-a9db-a9376992015d",
+          "uuid": "25e8192e-d062-47b0-8ec5-277fc4f870da",
           "body": "{\n\t\"id\": 1,\n\t\"name\": \"dream house\",\n\t\"surface\": 24,\n\t\"price\": 30,\n\t\"picture\": [\"https://blog.technavio.org/wp-content/uploads/2018/12/Online-House-Rental-Sites.jpg\"],\n\t\"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a lectus eleifend, varius massa ac, mollis tortor. Quisque ipsum nulla, faucibus ac metus a, eleifend efficitur augue. Integer vel pulvinar ipsum. Praesent mollis neque sed sagittis ultricies. Suspendisse congue ligula at justo molestie, eget cursus nulla tincidunt. Pellentesque elementum rhoncus arcu, viverra gravida turpis mattis in. Maecenas tempor elementum lorem vel ultricies. Nam tempus laoreet eros, et viverra libero tincidunt a. Nunc vel nisi vulputate, sodales massa eu, varius erat.\",\n\t\"owner_id\": 1,\n\t\"created_at\": \"2012/12/02\",\n\t\"updated_at\": \"2014/12/02\"  \n}",
           "latency": 0,
           "statusCode": 200,
@@ -398,7 +398,7 @@
           "callbacks": []
         },
         {
-          "uuid": "a4520b9a-3369-4ef1-81cd-e4d394e90284",
+          "uuid": "b80b4351-446d-4e66-aecc-34457b3d50ef",
           "body": "",
           "latency": 0,
           "statusCode": 401,
@@ -429,13 +429,13 @@
       "type": "http"
     },
     {
-      "uuid": "15afe62a-b845-4e1e-865b-a35044fbd949",
+      "uuid": "81643f55-f500-4f27-b7be-bba43f876555",
       "documentation": "",
       "method": "post",
       "endpoint": "rentals",
       "responses": [
         {
-          "uuid": "dea1d991-2465-48e6-968f-9487eca83d70",
+          "uuid": "1b94f8a7-ae27-4e08-a1af-0d2676192263",
           "body": "{\n  \"message\": \"Rental created !\"\n}",
           "latency": 0,
           "statusCode": 200,
@@ -454,7 +454,7 @@
           "callbacks": []
         },
         {
-          "uuid": "88b9b416-d39d-4350-8ded-edc5c5fe7427",
+          "uuid": "fb6a099f-a5fe-4fbf-a6dd-18191d1096c3",
           "body": "",
           "latency": 0,
           "statusCode": 401,
@@ -485,13 +485,13 @@
       "type": "http"
     },
     {
-      "uuid": "d83f39e5-f705-4548-ab60-007aa926df3a",
+      "uuid": "2c0925d1-ca1f-4d7c-86be-00d226bff976",
       "documentation": "",
       "method": "put",
       "endpoint": "rentals/:id",
       "responses": [
         {
-          "uuid": "ff0540dd-9243-4d54-9235-ae72e6b365ae",
+          "uuid": "e1096c68-fe14-4703-b05d-eedcc001049f",
           "body": "{\n  \"message\": \"Rental updated !\"\n}",
           "latency": 0,
           "statusCode": 200,
@@ -510,7 +510,7 @@
           "callbacks": []
         },
         {
-          "uuid": "2708b2af-538b-4196-b5c2-424b49c39c3f",
+          "uuid": "aabb7e2b-3298-4edb-9789-88aef0ca60a1",
           "body": "",
           "latency": 0,
           "statusCode": 401,
@@ -541,13 +541,13 @@
       "type": "http"
     },
     {
-      "uuid": "fba99f12-f037-44b1-96d3-400b7778e0a9",
+      "uuid": "4c96e52d-c77d-4489-9b6f-38f47a5aa5b6",
       "documentation": "",
       "method": "get",
       "endpoint": "user/:id",
       "responses": [
         {
-          "uuid": "333434fc-9d55-4c34-b897-e210599a83a8",
+          "uuid": "f8d80e21-73e1-4412-94f7-c79a047a66d6",
           "body": "{\n  \"id\": 2,\n\t\"name\": \"Owner Name\",\n\t\"email\": \"test@test.com\",\n\t\"created_at\": \"2022/02/02\",\n\t\"updated_at\": \"2022/08/02\"  \n}",
           "latency": 0,
           "statusCode": 200,
@@ -566,7 +566,7 @@
           "callbacks": []
         },
         {
-          "uuid": "e7ede5e2-bcdf-4550-bf80-55110e482199",
+          "uuid": "5da4c2cf-a20c-4810-bd36-bce0bf19d108",
           "body": "",
           "latency": 0,
           "statusCode": 401,
@@ -645,39 +645,39 @@
   "rootChildren": [
     {
       "type": "route",
-      "uuid": "822a0106-1c27-4f6b-92d0-89da3da205cf"
+      "uuid": "e94abfd8-9f9b-4d12-aecd-eecd174ee0e4"
     },
     {
       "type": "route",
-      "uuid": "f5164abe-efa9-44f1-8dee-54ba19bfdd4d"
+      "uuid": "bcf967cf-6529-4e1b-84aa-91e6de3ec910"
     },
     {
       "type": "route",
-      "uuid": "7eca689a-296c-44d0-ad11-ab666af036d8"
+      "uuid": "b64d1adf-b2fd-4b82-8b39-8ac8bc3c7958"
     },
     {
       "type": "route",
-      "uuid": "9fddcd86-c150-46f2-8dd0-4bca98c410ec"
+      "uuid": "e21efa22-35b9-4b0a-9da0-17f542b25ad0"
     },
     {
       "type": "route",
-      "uuid": "cd933fa8-d658-4bab-a26f-ad684dbcc21e"
+      "uuid": "e56bfe8e-d837-4e44-bf01-cb3aac0bfb50"
     },
     {
       "type": "route",
-      "uuid": "4f438ee4-023d-40b8-9ed4-f22f8f12736e"
+      "uuid": "30772291-74d3-4c63-8077-4eceb50ef2c0"
     },
     {
       "type": "route",
-      "uuid": "15afe62a-b845-4e1e-865b-a35044fbd949"
+      "uuid": "81643f55-f500-4f27-b7be-bba43f876555"
     },
     {
       "type": "route",
-      "uuid": "d83f39e5-f705-4548-ab60-007aa926df3a"
+      "uuid": "2c0925d1-ca1f-4d7c-86be-00d226bff976"
     },
     {
       "type": "route",
-      "uuid": "fba99f12-f037-44b1-96d3-400b7778e0a9"
+      "uuid": "4c96e52d-c77d-4489-9b6f-38f47a5aa5b6"
     }
   ],
   "callbacks": []

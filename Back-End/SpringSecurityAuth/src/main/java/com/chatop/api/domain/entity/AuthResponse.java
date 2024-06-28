@@ -1,5 +1,8 @@
 package com.chatop.api.domain.entity;
 
+import lombok.Data;
+
+@Data
 public class AuthResponse {
     String token;
 
@@ -7,8 +10,5 @@ public class AuthResponse {
         this.token = token;
     }
 
-    public String getToken() {
-        return token;
-    }
 }
 

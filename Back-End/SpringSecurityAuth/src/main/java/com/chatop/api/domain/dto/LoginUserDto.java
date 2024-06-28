@@ -1,5 +1,8 @@
 package com.chatop.api.domain.dto;
 
+import lombok.Data;
+
+@Data
 public class LoginUserDto {
 
     private String email;

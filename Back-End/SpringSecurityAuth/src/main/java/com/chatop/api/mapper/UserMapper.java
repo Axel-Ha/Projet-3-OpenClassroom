@@ -10,13 +10,13 @@ public class UserMapper {
         if (user == null) {
             return null;
         } else {
-            UserDto dtoUserDto = new UserDto();
-            dtoUserDto.setId(user.getId());
-            dtoUserDto.setEmail(user.getEmail());
-            dtoUserDto.setName(user.getName());
-            dtoUserDto.setCreated_at(user.getCreatedAt());
-            dtoUserDto.setUpdated_at(user.getUpdatedAt());
-            return dtoUserDto;
+            UserDto userDto = new UserDto();
+            userDto.setId(user.getId());
+            userDto.setEmail(user.getEmail());
+            userDto.setName(user.getName());
+            userDto.setCreated_at(user.getCreatedAt());
+            userDto.setUpdated_at(user.getUpdatedAt());
+            return userDto;
         }
     }
 

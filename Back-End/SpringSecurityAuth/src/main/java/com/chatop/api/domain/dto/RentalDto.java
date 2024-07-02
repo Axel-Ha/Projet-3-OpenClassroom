@@ -1,6 +1,7 @@
 package com.chatop.api.domain.dto;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 
@@ -15,7 +16,7 @@ public class RentalDto {
 
     private Integer price;
 
-    private String picture;
+    private MultipartFile picture;
 
     private String description;
 

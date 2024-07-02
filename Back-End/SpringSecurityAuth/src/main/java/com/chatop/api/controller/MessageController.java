@@ -5,10 +5,7 @@ import com.chatop.api.domain.entity.MessageResponse;
 import com.chatop.api.services.MessageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -21,7 +18,7 @@ public class MessageController {
         this.msgService = msgService;
     }
 
-    @GetMapping("/")
+    @PostMapping("/")
     public ResponseEntity<MessageResponse> createNewMessage(@RequestBody MessageDto messageDto){
         MessageResponse msgResponse = new MessageResponse();
         msgService.saveMessage(messageDto);

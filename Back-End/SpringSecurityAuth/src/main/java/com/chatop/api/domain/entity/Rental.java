@@ -2,7 +2,6 @@ package com.chatop.api.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 
@@ -25,14 +24,13 @@ public class Rental {
     private Integer price;
 
     @Column(name= "picture")
-    private MultipartFile picture;
+    private String picture;
 
     @Column(name= "description")
     private String description;
 
-    @Id
     @Column(name= "owner_id")
-    private Long ownerId;
+    private Long userId;
 
     @Column(name= "created_at")
     private Date createdAt;

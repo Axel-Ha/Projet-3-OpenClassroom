@@ -35,6 +35,7 @@ public class UserService implements UserDetailsService {
 
     public UserDto getUserById(@PathVariable final Long id){
         System.out.println("UserService getUserById 3");
+
         return userRepository.findById(id).map(userMapper::userEntityToUserDto).orElseThrow();
     }
 

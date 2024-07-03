@@ -16,7 +16,7 @@ public class RentalDto {
 
     private Integer price;
 
-    private MultipartFile picture;
+    private String picture;
 
     private String description;
 

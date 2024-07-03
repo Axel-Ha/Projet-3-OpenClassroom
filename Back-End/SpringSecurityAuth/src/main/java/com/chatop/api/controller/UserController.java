@@ -20,6 +20,7 @@ public class UserController {
         this.userService = userService;
     }
 
+
     @GetMapping("/user/{id}")
     public ResponseEntity<UserDto> getUser(@PathVariable final Long id){
         log.info("Controller getUser() 2");

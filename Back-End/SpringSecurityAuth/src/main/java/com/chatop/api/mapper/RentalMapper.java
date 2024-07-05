@@ -15,11 +15,11 @@ public class RentalMapper {
             rentalDto.setName(rental.getName());
             rentalDto.setSurface(rental.getSurface());
             rentalDto.setPrice(rental.getPrice());
-            rentalDto.setUserId(rental.getUserId());
+            rentalDto.setOwner_id(rental.getUserId());
             rentalDto.setPicture(rental.getPicture());
             rentalDto.setDescription(rental.getDescription());
-            rentalDto.setCreatedAt(rental.getCreatedAt());
-            rentalDto.setUpdatedAt(rental.getUpdatedAt());
+            rentalDto.setCreated_at(rental.getCreatedAt());
+            rentalDto.setUpdated_at(rental.getUpdatedAt());
             return rentalDto;
         }
     }
@@ -32,11 +32,11 @@ public class RentalMapper {
             rental.setName(rentalDto.getName());
             rental.setSurface(rentalDto.getSurface());
             rental.setPrice(rentalDto.getPrice());
-            rental.setUserId(rentalDto.getUserId());
+            rental.setUserId(rentalDto.getOwner_id());
             rental.setPicture(rentalDto.getPicture());
             rental.setDescription(rentalDto.getDescription());
-            rental.setCreatedAt(rentalDto.getCreatedAt());
-            rental.setUpdatedAt(rentalDto.getUpdatedAt());
+            rental.setCreatedAt(rentalDto.getCreated_at());
+            rental.setUpdatedAt(rentalDto.getUpdated_at());
             return rental;
         }
     }

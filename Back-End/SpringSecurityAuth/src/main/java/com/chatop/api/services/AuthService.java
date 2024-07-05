@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -74,6 +75,7 @@ public class AuthService {
     }
 
     //login a user
+    @Transactional(readOnly = true)
     public AuthResponse login(LoginUserDto loginUserDto){
         log.info("AuthService : login 3");
         authenticationManager.authenticate(
@@ -88,6 +90,7 @@ public class AuthService {
         return new AuthResponse(jwtService.generateToken(userDetails));
     }
 
+    @Transactional(readOnly = true)
     public  UserDto authenticationUser() {
         log.info("AuthService : authenticationUser ");
         // Retrieve the current authentication object from the security context

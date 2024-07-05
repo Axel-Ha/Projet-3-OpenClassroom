@@ -38,7 +38,7 @@ public class SpringSecurityConfig {
                                 "/swagger-ui/**",
                                 "/api/auth/register",
                                 "/api/auth/login",
-                                "/api/pictures/**"
+                                "api/pictures/**"
                         ).permitAll())
                 .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)

@@ -15,6 +15,7 @@ import com.chatop.api.domain.dto.UserDto;
 import com.chatop.api.domain.entity.UserEntity;
 import com.chatop.api.mapper.UserMapper;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Collections;
@@ -33,6 +34,7 @@ public class UserService implements UserDetailsService {
         this.userMapper = userMapper;
     }
 
+    @Transactional(readOnly = true)
     public UserDto getUserById(@PathVariable final Long id){
         System.out.println("UserService getUserById 3");
 
@@ -40,6 +42,7 @@ public class UserService implements UserDetailsService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         log.info("UserService : loadUserByUsername  4");
         UserEntity userEntity = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User Not found"));

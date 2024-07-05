@@ -18,10 +18,10 @@ public class PictureController {
     }
 
     @GetMapping("/api/pictures/{filename}")
-    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+    public ResponseEntity<Resource> serverFile(@PathVariable String filename) {
         try {
             Resource resource = pictureService.getPicture(filename);
-
+            System.out.println("test");
             if (resource.exists() || resource.isReadable()) {
                 return ResponseEntity.ok()
                         .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")

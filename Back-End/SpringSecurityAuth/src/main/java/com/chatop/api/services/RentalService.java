@@ -8,21 +8,25 @@ import com.chatop.api.mapper.RentalMapper;
 import com.chatop.api.repository.RentalRepository;
 import com.chatop.api.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Slf4j
 @Service
+@Transactional
 public class RentalService {
 
+    private final String pictureApiPath = "/api/pictures/" ;
     private final RentalRepository rentalRepository;
     private final UserRepository userRepository;
     private final RentalMapper rentalMapper;
@@ -35,24 +39,40 @@ public class RentalService {
         this.pictureService = pictureService;
     }
 
-
+    @Transactional(readOnly = true)
     public RentalDto getRental(@PathVariable final Long id) {
-        return rentalRepository.findById(id).map(rentalMapper::rentalToRentalDto).orElseThrow();
+        Rental rental = rentalRepository.findById(id).orElseThrow();
+        RentalDto rentalDto = rentalMapper.rentalToRentalDto(rental);
+        rentalDto.setPicture(pictureApiPath + rental.getPicture());
+        return rentalDto;
 
     }
 
+    @Transactional(readOnly = true)
     public RentalsDto getAllRentals() {
-        Iterable<Rental> allRentals = rentalRepository.findAll();
-        ArrayList<RentalDto> listRentalsDto = new ArrayList<>();
-        for(Rental rental : allRentals){
-            RentalDto rentalDto = rentalMapper.rentalToRentalDto(rental);
-            listRentalsDto.add(rentalDto);
-        }
-        RentalsDto rentalsDto = new RentalsDto();
-        rentalsDto.setRentalsDto(listRentalsDto);
+        //Will not be changed
+        final List<RentalDto> allRentals = rentalRepository.findAll().stream()
+                .map(rental -> {
+                    RentalDto rentalDto = rentalMapper.rentalToRentalDto(rental);
 
-        return rentalsDto;
+                    // Attempt to retrieve the picture
+                    try {
+                        rentalDto.setPicture(pictureApiPath + rental.getPicture());
+                        System.out.println(pictureApiPath + pictureService.getPicture(rental.getPicture()));
+                    } catch (Exception e) {
+                        throw new RuntimeException("Error serving file", e);
+                    }
+
+                    return rentalDto;
+                })
+                .toList();
+
+        RentalsDto rentals = new RentalsDto();
+        rentals.setRentals(allRentals);
+
+        return rentals;
     }
+
 
 
     public void saveRental(String name,

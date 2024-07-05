@@ -1,7 +1,7 @@
 package com.chatop.api.domain.dto;
 
+import jakarta.persistence.Column;
 import lombok.Data;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 
@@ -20,9 +20,9 @@ public class RentalDto {
 
     private String description;
 
-    private Long userId;
+    private Long owner_id;
 
-    private Date createdAt;
+    private Date created_at;
 
-    private Date updatedAt;
+    private Date updated_at;
 }

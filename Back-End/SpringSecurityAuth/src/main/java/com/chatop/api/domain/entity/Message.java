@@ -15,10 +15,10 @@ public class Message {
     private Long id;
 
     @Column(name = "rental_id")
-    private int rentalId;
+    private Long rentalId;
 
     @Column(name = "user_id")
-    private int userId;
+    private Long userId;
 
     private String message;
 

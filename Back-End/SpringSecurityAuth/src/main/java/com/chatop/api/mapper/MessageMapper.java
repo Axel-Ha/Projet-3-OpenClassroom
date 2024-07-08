@@ -14,8 +14,8 @@ public class MessageMapper {
 
         MessageDto messageDto = new MessageDto();
         messageDto.setId(message.getId());
-        messageDto.setRentalId(message.getRentalId());
-        messageDto.setUserId(message.getUserId());
+        messageDto.setRental_id(message.getRentalId());
+        messageDto.setUser_id(message.getUserId());
         messageDto.setMessage(message.getMessage());
         messageDto.setCreatedAt(message.getCreatedAt());
         messageDto.setUpdatedAt(message.getUpdatedAt());
@@ -30,8 +30,8 @@ public class MessageMapper {
 
         Message message = new Message();
         message.setId(messageDto.getId());
-        message.setRentalId(messageDto.getRentalId());
-        message.setUserId(messageDto.getUserId());
+        message.setRentalId(messageDto.getRental_id());
+        message.setUserId(messageDto.getUser_id());
         message.setMessage(messageDto.getMessage());
         message.setCreatedAt(messageDto.getCreatedAt());
         message.setUpdatedAt(messageDto.getUpdatedAt());

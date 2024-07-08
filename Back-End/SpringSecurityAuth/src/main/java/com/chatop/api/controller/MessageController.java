@@ -18,9 +18,10 @@ public class MessageController {
         this.msgService = msgService;
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<MessageResponse> createNewMessage(@RequestBody MessageDto messageDto){
         MessageResponse msgResponse = new MessageResponse();
+        log.info("MessageController: createNewMessage: " + messageDto);
         msgService.saveMessage(messageDto);
         msgResponse.setMessage("Message was sent with success");
         return ResponseEntity.ok(msgResponse);

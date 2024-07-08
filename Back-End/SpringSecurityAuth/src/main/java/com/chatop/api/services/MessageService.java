@@ -4,8 +4,12 @@ import com.chatop.api.domain.dto.MessageDto;
 import com.chatop.api.domain.entity.Message;
 import com.chatop.api.mapper.MessageMapper;
 import com.chatop.api.repository.MessageRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
+@Slf4j
 @Service
 public class MessageService {
 
@@ -19,6 +23,9 @@ public class MessageService {
 
     public void saveMessage(MessageDto msgDto){
         Message msg = msgMapper.MsgDtotoMessage(msgDto);
+        msg.setCreatedAt(new Date());
+        msg.setUpdatedAt(new Date());
+        log.info("MessageService: saveMessage: " + msg);
         msgRepository.save(msg);
     }
 }

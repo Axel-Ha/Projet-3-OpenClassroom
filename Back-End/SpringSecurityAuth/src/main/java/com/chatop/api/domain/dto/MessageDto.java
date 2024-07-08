@@ -8,9 +8,9 @@ public class MessageDto {
 
     private Long id;
 
-    private int rentalId;
+    private Long rental_id;
 
-    private int userId;
+    private Long user_id;
 
     private String message;
 

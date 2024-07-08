@@ -8,8 +8,6 @@ import com.chatop.api.mapper.RentalMapper;
 import com.chatop.api.repository.RentalRepository;
 import com.chatop.api.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;

@@ -53,4 +53,17 @@ public class RentalController {
         return ResponseEntity.ok(msgResponse);
     }
 
+    @PutMapping("/rentals/{id}")
+    public ResponseEntity<MessageResponse> updateRental(
+            @PathVariable Long id,
+            @RequestParam String name,
+            @RequestParam int surface,
+            @RequestParam int price,
+            @RequestParam String description
+    ){
+        rentalService.updateRental(id, name,surface,price,description);
+        MessageResponse msgResponse = new MessageResponse();
+        msgResponse.setMessage("Rental updated");
+        return ResponseEntity.ok(msgResponse);
+    }
 }

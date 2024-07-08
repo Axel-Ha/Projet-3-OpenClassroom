@@ -106,4 +106,13 @@ public class RentalService {
     }
 
 
+    public void updateRental(Long id, String name, int surface, int price, String description) {
+        Rental rentalToUpdate = rentalRepository.findById(id).orElseThrow();
+        rentalToUpdate.setName(name);
+        rentalToUpdate.setSurface(surface);
+        rentalToUpdate.setPrice(price);
+        rentalToUpdate.setDescription(description);
+        rentalToUpdate.setUpdatedAt(new Date());
+        rentalRepository.save(rentalToUpdate);
+    }
 }

@@ -56,7 +56,6 @@ public class RentalService {
                     // Attempt to retrieve the picture
                     try {
                         rentalDto.setPicture(pictureApiPath + rental.getPicture());
-                        System.out.println(pictureApiPath + pictureService.getPicture(rental.getPicture()));
                     } catch (Exception e) {
                         throw new RuntimeException("Error serving file", e);
                     }
@@ -97,7 +96,6 @@ public class RentalService {
             rental.setUserId(user.getId());
             rental.setCreatedAt(new Date());
             rental.setUpdatedAt(new Date());
-            log.info("RentalService : saveRental()");
             rentalRepository.save(rental);
         } catch (Exception e) {
             throw new RuntimeException(e);

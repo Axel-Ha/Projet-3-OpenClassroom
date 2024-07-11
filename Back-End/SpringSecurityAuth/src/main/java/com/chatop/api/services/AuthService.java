@@ -50,8 +50,6 @@ public class AuthService {
 
     //Register a user
     public AuthResponse register(RegisterUserDto registerUserDto){
-        log.info("AuthService : register 3");
-
         // Create a new User
         UserEntity userEntity = registerMapper.registerDtoToUserEntity(registerUserDto);
         userEntity.setEmail(registerUserDto.getEmail());
@@ -77,7 +75,6 @@ public class AuthService {
     //login a user
     @Transactional(readOnly = true)
     public AuthResponse login(LoginUserDto loginUserDto){
-        log.info("AuthService : login 3");
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginUserDto.getEmail(),
@@ -92,7 +89,6 @@ public class AuthService {
 
     @Transactional(readOnly = true)
     public  UserDto authenticationUser() {
-        log.info("AuthService : authenticationUser ");
         // Retrieve the current authentication object from the security context
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 

@@ -1,5 +1,8 @@
 package com.chatop.api.controller;
 import com.chatop.api.domain.dto.UserDto;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +25,15 @@ public class UserController {
 
 
     @GetMapping("/user/{id}")
+    @Operation(
+            summary = "Retrieve a user by ID",
+            description = "Fetch details of a user based on the provided ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User found successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
+            @ApiResponse(responseCode = "404", description = "User not found")
+    })
     public ResponseEntity<UserDto> getUser(@PathVariable final Long id){
-        log.info("Controller getUser() 2");
         return ResponseEntity.ok(userService.getUserById(id));
     }
 }

@@ -44,7 +44,6 @@ public class UserService implements UserDetailsService {
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        log.info("UserService : loadUserByUsername  4");
         UserEntity userEntity = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User Not found"));
         GrantedAuthority authority = new SimpleGrantedAuthority(userEntity.getRole());
         return new User(userEntity.getEmail(), userEntity.getPassword(), Collections.singletonList(authority));

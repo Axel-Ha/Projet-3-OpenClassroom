@@ -40,8 +40,6 @@ public class PictureService {
 
     public String savePicture(MultipartFile imageFile) throws IOException {
         try {
-            log.info("PictureService : saveImage()");
-
             // Create a File object pointing to the images directory
             File resourcesDirectory = new File(picturePath);
 

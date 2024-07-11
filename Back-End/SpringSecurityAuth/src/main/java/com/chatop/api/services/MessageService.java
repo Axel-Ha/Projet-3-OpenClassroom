@@ -25,7 +25,6 @@ public class MessageService {
         Message msg = msgMapper.MsgDtotoMessage(msgDto);
         msg.setCreatedAt(new Date());
         msg.setUpdatedAt(new Date());
-        log.info("MessageService: saveMessage: " + msg);
         msgRepository.save(msg);
     }
 }

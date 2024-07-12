@@ -1,4 +1,4 @@
-# Application Châtop
+# Application ChâTop
 
 ## Installations
 Pour le bon fonctionnement du projet, vous aurez besoin de plusieurs éléments.

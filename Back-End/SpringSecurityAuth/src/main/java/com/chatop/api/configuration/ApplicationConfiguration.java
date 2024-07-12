@@ -25,6 +25,7 @@ public class ApplicationConfiguration {
     }
 
     @Bean
+    // Define a UserDetailsService bean to load user-specific data during authentication
     public UserDetailsService userDetailsService() {
         return username -> userRepository.findByEmail(username)
                 .map(this::convertToUserDetails)
@@ -32,16 +33,19 @@ public class ApplicationConfiguration {
     }
 
     @Bean
+    // Define a BCryptPasswordEncoder bean to encrypt passwords
     BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
+    // Define an AuthenticationManager bean to manage authentication processes
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
     @Bean
+    // Define an AuthenticationProvider bean for DaoAuthenticationProvider configuration
     AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 
@@ -51,10 +55,11 @@ public class ApplicationConfiguration {
         return authProvider;
     }
 
+    // Convert UserEntity to Spring Security UserDetails
     private UserDetails convertToUserDetails(UserEntity userEntity) {
         return User.withUsername(userEntity.getEmail())
                 .password(userEntity.getPassword())
-                .authorities(Collections.emptyList()) // You can add user roles here if needed
+                .authorities(Collections.emptyList()) // Can add user roles here if needed
                 .build();
     }
 }

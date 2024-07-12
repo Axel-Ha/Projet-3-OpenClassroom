@@ -1,5 +1,6 @@
 package com.chatop.api.services;
 
+import com.chatop.api.exceptions.UserErrorException;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
@@ -36,17 +37,27 @@ public class UserService implements UserDetailsService {
 
     @Transactional(readOnly = true)
     public UserDto getUserById(@PathVariable final Long id){
-        System.out.println("UserService getUserById 3");
-
+        // Find the user by their ID in the repository
+        // Map the UserEntity to UserDto using userMapper if the user is found
         return userRepository.findById(id).map(userMapper::userEntityToUserDto).orElseThrow();
     }
 
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        UserEntity userEntity = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User Not found"));
-        GrantedAuthority authority = new SimpleGrantedAuthority(userEntity.getRole());
-        return new User(userEntity.getEmail(), userEntity.getPassword(), Collections.singletonList(authority));
+        try{
+            // Find the user by email in the repository
+            UserEntity userEntity = userRepository.findByEmail(email)
+                    // Throw an exception if the user is not found
+                    .orElseThrow(() -> new UsernameNotFoundException("User Not found"));
+            // Create a GrantedAuthority object for the user's role
+            GrantedAuthority authority = new SimpleGrantedAuthority(userEntity.getRole());
+            // Return a User object containing the user email, password, and authorities
+            return new User(userEntity.getEmail(), userEntity.getPassword(), Collections.singletonList(authority));
+        }
+        catch (Exception e){
+            throw new UserErrorException("Error loading user by username", e);
+        }
 
     }
 }

@@ -2,6 +2,7 @@ package com.chatop.api.services;
 
 import com.chatop.api.domain.dto.LoginUserDto;
 import com.chatop.api.domain.dto.UserDto;
+import com.chatop.api.exceptions.UserErrorException;
 import com.chatop.api.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import com.chatop.api.domain.dto.RegisterUserDto;
@@ -38,7 +39,9 @@ public class AuthService {
                        AuthenticationManager authenticationManager,
                        RegisterMapper registerMapper,
                        UserService userService,
-                       JWTService jwtService, UserMapper userMapper) {
+                       JWTService jwtService,
+                       UserMapper userMapper) {
+
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
@@ -50,57 +53,75 @@ public class AuthService {
 
     //Register a user
     public AuthResponse register(RegisterUserDto registerUserDto){
-        // Create a new User
-        UserEntity userEntity = registerMapper.registerDtoToUserEntity(registerUserDto);
-        userEntity.setEmail(registerUserDto.getEmail());
-        userEntity.setName(registerUserDto.getName());
+        try {
+            // Create a new User
+            UserEntity userEntity = registerMapper.registerDtoToUserEntity(registerUserDto);
+            userEntity.setEmail(registerUserDto.getEmail());
+            userEntity.setName(registerUserDto.getName());
 
-        // Encode password
-        userEntity.setPassword(passwordEncoder.encode(registerUserDto.getPassword()));
+            // Encode password
+            userEntity.setPassword(passwordEncoder.encode(registerUserDto.getPassword()));
 
-        /* Get the current DayTime */
-        userEntity.setCreatedAt(new Date());
-        userEntity.setUpdatedAt(new Date());
+            /* Get the current DayTime */
+            userEntity.setCreatedAt(new Date());
+            userEntity.setUpdatedAt(new Date());
 
-        //Save the user in DB
-        userRepository.save(userEntity);
+            //Save the user in DB
+            userRepository.save(userEntity);
 
-        //Load the user details using the email provided in the registration DTO
-        UserDetails userDetails = userService.loadUserByUsername(registerUserDto.getEmail());
+            //Load the user details using the email provided in the registration DTO
+            UserDetails userDetails = userService.loadUserByUsername(registerUserDto.getEmail());
 
-        //Generate a JWT token for the registered user using their user details
-        return new AuthResponse(jwtService.generateToken(userDetails));
+            //Generate a JWT token for the registered user using their user details
+            return new AuthResponse(jwtService.generateToken(userDetails));
+        }
+        catch (Exception e){
+            throw new UserErrorException("User registration failed", e);
+        }
+
     }
 
     //login a user
     @Transactional(readOnly = true)
     public AuthResponse login(LoginUserDto loginUserDto){
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginUserDto.getEmail(),
-                        loginUserDto.getPassword()
-                )
-        );
-        //Load the user details using the email provided in the registration DTO
-        UserDetails userDetails = userService.loadUserByUsername(loginUserDto.getEmail());
+        try{
 
-        return new AuthResponse(jwtService.generateToken(userDetails));
+            // Authenticate the user using the provided email and password
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            loginUserDto.getEmail(),
+                            loginUserDto.getPassword()
+                    )
+            );
+            //Load the user details using the email provided in the registration DTO
+            UserDetails userDetails = userService.loadUserByUsername(loginUserDto.getEmail());
+
+            // Generate and return a JWT token for the authenticated user
+            return new AuthResponse(jwtService.generateToken(userDetails));
+        }
+        catch (Exception e){
+            throw new UserErrorException("User failed login", e);
+        }
     }
 
     @Transactional(readOnly = true)
-    public  UserDto authenticationUser() {
-        // Retrieve the current authentication object from the security context
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    public UserDto authenticationUser() {
+        try {
+            // Retrieve the current authentication object from the security context
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        // Extract the email (username) from the authentication object
-        String email = authentication.getName();
+            // Extract the email (username) from the authentication object
+            String email = authentication.getName();
 
         /*Use the email to find the corresponding user in the repository
          If the user is found, map the UserEntity to a UserDto using userMapper
          If no user is found, throw an exception */
-        return userRepository.findByEmail(email)
-                .map(userMapper::userEntityToUserDto)
-                .orElseThrow();
-    }
+            return userRepository.findByEmail(email)
+                    .map(userMapper::userEntityToUserDto)
+                    .orElseThrow(() -> new UserErrorException("User not found"));
 
+        } catch (Exception e) {
+         throw new UserErrorException("Error retrieving authenticated user", e);
+        }
+    }
 }

@@ -1,7 +1,10 @@
 package com.chatop.api.exceptions;
 
 public class RentalNotFoundException extends RuntimeException {
-    public RentalNotFoundException() {
-        super("Could not find the rental");
+    public RentalNotFoundException(String error) {
+        super(error);
+    }
+    public RentalNotFoundException(String error, Exception e ) {
+        super(error, e);
     }
 }

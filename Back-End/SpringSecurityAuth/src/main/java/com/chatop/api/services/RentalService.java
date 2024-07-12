@@ -4,6 +4,7 @@ import com.chatop.api.domain.dto.RentalDto;
 import com.chatop.api.domain.dto.RentalsDto;
 import com.chatop.api.domain.entity.Rental;
 import com.chatop.api.domain.entity.UserEntity;
+import com.chatop.api.exceptions.RentalNotFoundException;
 import com.chatop.api.mapper.RentalMapper;
 import com.chatop.api.repository.RentalRepository;
 import com.chatop.api.repository.UserRepository;
@@ -57,7 +58,7 @@ public class RentalService {
                     try {
                         rentalDto.setPicture(pictureApiPath + rental.getPicture());
                     } catch (Exception e) {
-                        throw new RuntimeException("Error serving file", e);
+                        throw new RentalNotFoundException("Error serving file", e);
                     }
 
                     return rentalDto;
@@ -80,10 +81,8 @@ public class RentalService {
 
         // Retrieve the current authentication object from the security context
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
         // Extract the email (username) from the authentication object
         String email = authentication.getName();
-
         UserEntity user = userRepository.findByEmail(email).orElseThrow();
         try{
             String picPath = pictureService.savePicture(picture);
@@ -98,7 +97,7 @@ public class RentalService {
             rental.setUpdatedAt(new Date());
             rentalRepository.save(rental);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RentalNotFoundException("Rental could not be save",e);
         }
 
     }
@@ -106,11 +105,16 @@ public class RentalService {
 
     public void updateRental(Long id, String name, int surface, int price, String description) {
         Rental rentalToUpdate = rentalRepository.findById(id).orElseThrow();
-        rentalToUpdate.setName(name);
-        rentalToUpdate.setSurface(surface);
-        rentalToUpdate.setPrice(price);
-        rentalToUpdate.setDescription(description);
-        rentalToUpdate.setUpdatedAt(new Date());
-        rentalRepository.save(rentalToUpdate);
+        try{
+            rentalToUpdate.setName(name);
+            rentalToUpdate.setSurface(surface);
+            rentalToUpdate.setPrice(price);
+            rentalToUpdate.setDescription(description);
+            rentalToUpdate.setUpdatedAt(new Date());
+            rentalRepository.save(rentalToUpdate);
+        }
+        catch (Exception e){
+            throw new RentalNotFoundException("Rental could not be updated",e);
+        }
     }
 }

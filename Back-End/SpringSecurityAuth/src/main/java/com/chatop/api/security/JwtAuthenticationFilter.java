@@ -32,7 +32,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String authHeader = request.getHeader("Authorization");
 
-        /* If auth header is null or if it does not start with the Bearer property */
+        // If auth header is null or if it does not start with the Bearer property
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
@@ -41,7 +41,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String token = authHeader.substring(7);
         String username = jwtService.extractUsername(token);
 
-        /* If user is not authenticated */
+        // If user is not authenticated */
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
@@ -54,13 +54,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
 
-            /* Or if token is expired, generate a new one */
+            // if token is expired, generate a new one
             if(jwtService.isTokenExpired(token)) {
                 String newToken = jwtService.generateToken(userDetails);
                 response.setHeader("Authorization", "Bearer " + newToken);
             }
         }
-        /* Passing to next filter */
+        // Passing to next filter
         filterChain.doFilter(request, response);
     }
 

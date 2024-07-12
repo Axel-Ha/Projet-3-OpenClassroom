@@ -21,7 +21,7 @@ Pour le bon fonctionnement du projet, vous aurez besoin de plusieurs éléments.
 
 1. **MySQL Configuration:**
 
-   - L'utisateur par default est `root`, il n'y a pas de mot de passe.
+   - L'utilisateur par default est `root`, il n'y a pas de mot de passe.
    - Create a database named `your_database_name`.
 
 2. **Création Base de données in PhpMyAdminer**

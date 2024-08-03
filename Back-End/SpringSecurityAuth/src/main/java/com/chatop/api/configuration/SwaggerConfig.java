@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.tags.Tag;
 
 import static com.chatop.api.configuration.SwaggerConfig.NAME_SECURITY_REQUIREMENT;
 
@@ -24,6 +25,8 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .info(new Info().title("Chatop API")
                         .version("1.0")
-                        .description("Documentation de l'API Chatop"));
+                        .description("Documentation de l'API Chatop"))
+                        .addTagsItem(new Tag().name("Auth Controller"));
+
     }
 }

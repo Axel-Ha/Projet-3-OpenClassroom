@@ -4,6 +4,7 @@ import com.chatop.api.services.PictureService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.chatop.api.configuration.SwaggerConfig.NAME_SECURITY_REQUIREMENT;
+
 @Controller
 @RequestMapping("/api")
 @RestController
+@SecurityRequirement(name=NAME_SECURITY_REQUIREMENT)
 public class PictureController {
 
     private final PictureService pictureService;

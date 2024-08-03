@@ -10,6 +10,7 @@ import com.chatop.api.domain.entity.MessageResponse;
 import com.chatop.api.services.RentalService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
+import static com.chatop.api.configuration.SwaggerConfig.NAME_SECURITY_REQUIREMENT;
+
 @Slf4j
 @RequestMapping("/api")
 @RestController
+@SecurityRequirement(name=NAME_SECURITY_REQUIREMENT)
 public class RentalController {
     @Autowired
     private final RentalService rentalService;

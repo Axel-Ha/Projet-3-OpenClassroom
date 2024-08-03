@@ -6,13 +6,17 @@ import com.chatop.api.services.MessageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import static com.chatop.api.configuration.SwaggerConfig.NAME_SECURITY_REQUIREMENT;
+
 @Slf4j
 @RestController
 @RequestMapping("/api/messages")
+@SecurityRequirement(name=NAME_SECURITY_REQUIREMENT)
 public class MessageController {
 
     private final MessageService msgService;

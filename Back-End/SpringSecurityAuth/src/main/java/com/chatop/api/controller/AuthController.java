@@ -8,16 +8,20 @@ import com.chatop.api.services.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import static com.chatop.api.configuration.SwaggerConfig.NAME_SECURITY_REQUIREMENT;
 
 
 @Slf4j
 @RequestMapping("/api/auth")
 @RestController
 public class AuthController {
+
     private final AuthService authService;
 
     public AuthController(AuthService authService) {
@@ -58,6 +62,7 @@ public class AuthController {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved user details"),
             @ApiResponse(responseCode = "401", description = "User is not authenticated")
     })
+    @SecurityRequirement(name=NAME_SECURITY_REQUIREMENT)
     public ResponseEntity<UserDto> authenticatedUser(){
         return ResponseEntity.ok(authService.authenticationUser());
     }

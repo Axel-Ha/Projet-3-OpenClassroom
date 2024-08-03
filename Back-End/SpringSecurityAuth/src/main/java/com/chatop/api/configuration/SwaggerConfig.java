@@ -1,13 +1,24 @@
 package com.chatop.api.configuration;
 
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
+import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 
-@Configuration
-public class SwaggerConfig {
+import static com.chatop.api.configuration.SwaggerConfig.NAME_SECURITY_REQUIREMENT;
 
+@Configuration
+@SecurityScheme(
+        name = NAME_SECURITY_REQUIREMENT,
+        type = SecuritySchemeType.HTTP,
+        bearerFormat = "JWT",
+        scheme = "bearer"
+)
+public class SwaggerConfig {
+    public static final String NAME_SECURITY_REQUIREMENT = "Bearer Authentication";
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()

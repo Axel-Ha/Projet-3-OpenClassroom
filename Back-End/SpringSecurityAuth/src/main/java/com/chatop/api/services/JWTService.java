@@ -21,16 +21,6 @@ public class JWTService {
     @Value("${jwt.secret}")
     private String SECRET_KEY;
 
-    // Extract username from JWT token
-    public String extractUsername(String token) {
-        try {
-            Claims claims = extractAllClaims(token);
-            return claims.getSubject();
-        } catch (Exception e) {
-            throw new JWTErrorException("Error extracting username from token", e);
-        }
-    }
-
     // Generate JWT token for a user
     public String generateToken(UserDetails userDetails) {
         try {
@@ -58,13 +48,22 @@ public class JWTService {
             throw new JWTErrorException("Error validating token", e);
         }
     }
-
     // Check if the token is expired
     public boolean isTokenExpired(String token) {
         try {
             return extractExpiration(token).before(new Date());
         } catch (Exception e) {
             throw new JWTErrorException("Error checking if token is expired", e);
+        }
+    }
+
+    // Extract username from JWT token
+    public String extractUsername(String token) {
+        try {
+            Claims claims = extractAllClaims(token);
+            return claims.getSubject();
+        } catch (Exception e) {
+            throw new JWTErrorException("Error extracting username from token", e);
         }
     }
 
